@@ -30,6 +30,7 @@ export const signUp = (name, email, password) => (dispatch) => {
       email,
       password,
     },
+
   };
   axios(options)
     .then(({ data: { token, user } }) => dispatch(sign.up.success({ token, ...user })))
