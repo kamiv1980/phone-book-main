@@ -25,15 +25,21 @@ const sign = {
     error: (payload) => ({ type: actionTypes.SIGN_IN_ERROR, payload }),
   },
   up: {
-    request: () => null,
-    success: () => null,
-    error: () => null,
+    request: () => ({ type: actionTypes.SIGN_UP_REQUEST }),
+    success: (payload) => ({ type: actionTypes.SIGN_UP_SUCCESS, payload }),
+    error: (payload) => ({ type: actionTypes.SIGN_UP_ERROR, payload }),
   },
   out: {
-    request: () => null,
-    success: () => null,
-    error: () => null,
+    request: () => ({ type: actionTypes.SIGN_OUT_REQUEST }),
+    success: (payload) => ({ type: actionTypes.SIGN_OUT_SUCCESS, payload }),
+    error: (payload) => ({ type: actionTypes.SIGN_OUT_ERROR, payload }),
   },
 };
 
-const get = {};
+const get = {
+  request: () => ({ type: actionTypes.GET_USER_INFO_REQUEST }),
+  success: (payload) => ({ type: actionTypes.GET_USER_INFO_SUCCESS, payload }),
+  error: (payload) => ({ type: actionTypes.GET_USER_INFO_ERROR, payload }),
+};
+
+export { sign, get };
