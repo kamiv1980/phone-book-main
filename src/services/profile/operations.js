@@ -32,6 +32,6 @@ export const signUp = (name, email, password) => (dispatch) => {
     },
   };
   axios(options)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+    .then(({ data: { token, user } }) => dispatch(sign.up.success({ token, ...user })))
+    .catch((err) => dispatch(sign.up.error(err)));
 };
