@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -12,9 +13,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+import { signIn } from '../../services/profile/operations';
 import { useStyles } from './styles';
 
 export const SignIn = () => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,6 +26,7 @@ export const SignIn = () => {
   const handlePassword = ({ target: { value } }) => setPassword(value);
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(signIn(email, password));
   };
 
   const classes = useStyles();
