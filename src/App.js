@@ -1,14 +1,12 @@
 /** @format */
 
 import React, { memo } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { Home, SignIn, SignUp } from './pages';
+import { Navigator } from './navigator';
+import { selAuth } from './services/profile/selectors';
 
-export const App = memo(() => (
-  <Switch>
-    <Route exact path="/" component={Home} />
-    <Route exact path="/sign_in" component={SignIn} />
-    <Route exact path="/sign_up" component={SignUp} />
-  </Switch>
-));
+export const App = memo(() => {
+  const { isAuth } = useSelector(selAuth);
+  return <Navigator isAuth={isAuth} />;
+});

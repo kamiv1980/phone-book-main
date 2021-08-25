@@ -1,0 +1,12 @@
+.container {
+    margin-left: 20px;
+    max-width: 12em;
+    border: 2px solid royalblue;
+    border-radius: 5px;
+    background-color: beige;
+    text-align: center;
+}
+.title_menu{
+    font-size: 15px;
+    font-weight: 700;
+}

@@ -5,4 +5,8 @@ export const url = {
   signUp: baseUrl + '/users/signup',
   signOut: baseUrl + '/users/logout',
   getUserInfo: baseUrl + '/users/current',
+  getContacts: baseUrl + '/contacts',
+  addContact: baseUrl + '/contacts',
+  deleteContact: (id) => baseUrl + `/contacts/${id}`,
+  editContact: (id) => baseUrl + `/contacts/${id}`,
 };
