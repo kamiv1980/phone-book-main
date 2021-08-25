@@ -70,7 +70,7 @@ export const deleteContact = (id) => (dispatch, getState) => {
   };
 
   axios(options)
-    .then((res) => dispatch(items.delete.success(res)))
+    .then(() => dispatch(items.delete.success(id)))
     .catch((err) => {
       dispatch(items.delete.error(err));
       toast.error(err.message);
@@ -95,7 +95,7 @@ export const editContact = (id, name, number) => (dispatch, getState) => {
   };
 
   axios(options)
-    .then((res) => dispatch(items.edit.success(res)))
+    .then(({ data }) => dispatch(items.edit.success(data)))
     .catch((err) => {
       dispatch(items.edit.error(err));
       toast.error(err.message);

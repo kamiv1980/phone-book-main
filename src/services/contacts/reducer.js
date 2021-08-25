@@ -15,14 +15,12 @@ export function contactsReducer(state = initialState, { type, payload }) {
       return { ...state, data: [...state.data, payload] };
 
     case actionTypes.DELETE_CONTACT_SUCCESS:
-      return { ...state, data: state.data.filter((contact) => contact.id !== payload.id) };
+      return { ...state, data: state.data.filter(({ id }) => id !== payload) };
 
     case actionTypes.EDIT_CONTACT_SUCCESS:
       return {
         ...state,
-        data: state.data.map((contact) =>
-          contact.id === payload.id ? { ...contact, name: payload.name, number: payload.number } : contact,
-        ),
+        data: state.data.map((contact) => (contact.id === payload.id ? payload : contact)),
       };
 
     default:
