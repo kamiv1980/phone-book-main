@@ -1,22 +1,27 @@
 /** @format */
+import { memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styles from './styles.module.css';
-import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-import { selContacts } from '../../../../services/contacts/selectors';
-import { delContact } from '../../../../services/contacts/operations';
+import { selectorContacts } from '../../../../services/contacts/selectors';
+import { deleteContact } from '../../../../services/contacts/operations';
 import { newComponent, newEditItem } from '../../../../services/additional/actions';
+import styles from './styles.module.css';
 
-export const ContactList = () => {
-  const contacts = useSelector(selContacts);
+export const ContactList = memo(() => {
   const dispatch = useDispatch();
 
-  const onEditBtn = (user) => {
+  const contacts = useSelector(selectorContacts);
+
+  const handleEdit = (user) => () => {
     dispatch(newEditItem(user));
     dispatch(newComponent(true));
   };
+
+  const handleDelete = (id) => () => dispatch(deleteContact(id));
+
+  console.log('contacts', contacts);
   return (
     <table className={styles.list}>
       <thead>
@@ -27,21 +32,16 @@ export const ContactList = () => {
         </tr>
       </thead>
       <tbody>
-        {contacts.length > 0 ? (
+        {!!contacts.length ? (
           contacts.map((user) => (
             <tr key={user.id}>
               <td>{user.name}</td>
               <td>{user.number}</td>
               <td>
-                <button
-                  onClick={() => {
-                    onEditBtn(user);
-                  }}
-                  className="button muted-button"
-                >
+                <button onClick={handleEdit(user)} className="button muted-button">
                   <EditIcon />
                 </button>
-                <button onClick={() => dispatch(delContact(user.id))} className="button muted-button">
+                <button onClick={handleDelete(user.id)} className="button muted-button">
                   <DeleteIcon />
                 </button>
               </td>
@@ -55,4 +55,4 @@ export const ContactList = () => {
       </tbody>
     </table>
   );
-};
+});

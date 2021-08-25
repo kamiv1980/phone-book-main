@@ -1,4 +1,4 @@
 /** @format */
 
-export const selContacts = (state) => state.contacts.data;
-export const selCont = (state) => state.contacts.isCont;
+export const selectorContacts = (state) => state.contacts.data;
+export const selectorHasContacts = (state) => state.contacts.hasContacts;

@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
+import { loadingChecker } from './middlewares/loadingChecker';
 import { rootReducer } from './rootReducer';
 
 const loggerMiddleware = createLogger({
@@ -19,4 +20,7 @@ const loggerMiddleware = createLogger({
   },
 });
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, loggerMiddleware)));
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk, loggerMiddleware, loadingChecker)),
+);

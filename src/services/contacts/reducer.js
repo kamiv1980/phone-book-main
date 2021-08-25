@@ -2,17 +2,17 @@
 import { actionTypes } from './actions';
 
 const initialState = {
-  isCont: false,
+  hasContacts: false,
   data: [],
 };
 
 export function contactsReducer(state = initialState, { type, payload }) {
   switch (type) {
     case actionTypes.FETCH_CONTACTS_SUCCESS:
-      return { ...payload, isCont: true };
+      return { ...payload, hasContacts: true };
 
     case actionTypes.ADD_CONTACT_SUCCESS:
-      return { ...state, data: [...state.data, ...payload] };
+      return { ...state, data: [...state.data, payload] };
 
     case actionTypes.DELETE_CONTACT_SUCCESS:
       return { ...state, data: state.data.filter((contact) => contact.id !== payload.id) };
@@ -53,38 +53,6 @@ export function notesReducer(state = notes, action) {
         ...state,
         editItem: action.payload.editItem,
       };
-
-    default:
-      return state;
-  }
-}
-
-export function isLoadingReducer(state = false, action) {
-  switch (action.type) {
-    case actionTypes.FETCH_CONTACTS_REQUEST:
-      return { ...state, state: true };
-    case actionTypes.FETCH_CONTACTS_SUCCESS:
-      return { ...state, state: false };
-    case actionTypes.FETCH_CONTACTS_ERROR:
-      return { ...state, state: false };
-    case actionTypes.ADD_CONTACT_REQUEST:
-      return { ...state, state: true };
-    case actionTypes.ADD_CONTACT_SUCCESS:
-      return { ...state, state: false };
-    case actionTypes.ADD_CONTACT_ERROR:
-      return { ...state, state: false };
-    case actionTypes.DELETE_CONTACT_REQUEST:
-      return { ...state, state: true };
-    case actionTypes.DELETE_CONTACT_SUCCESS:
-      return { ...state, state: false };
-    case actionTypes.DELETE_CONTACT_ERROR:
-      return { ...state, state: false };
-    case actionTypes.EDIT_CONTACT_REQUEST:
-      return { ...state, state: true };
-    case actionTypes.EDIT_CONTACT_SUCCESS:
-      return { ...state, state: false };
-    case actionTypes.EDIT_CONTACT_ERROR:
-      return { ...state, state: false };
 
     default:
       return state;

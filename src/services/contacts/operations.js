@@ -7,13 +7,32 @@ import { url } from '../baseUrl';
 
 toast.configure();
 
-export const addContact = (name, number) => (dispatch, getState) => {
+export const getContacts = () => (dispatch, getState) => {
+  dispatch(items.get.request());
+
   const token = getState().profile.token;
 
-  if (!token) {
-    return;
-  }
+  const options = {
+    method: 'GET',
+    url: url.getContacts,
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+  };
+
+  axios(options)
+    .then((res) => dispatch(items.get.success(res)))
+    .catch((err) => {
+      dispatch(items.get.error(err));
+      toast.error(err.message);
+    });
+};
+
+export const addContact = (name, number) => (dispatch, getState) => {
   dispatch(items.add.request());
+
+  const token = getState().profile.token;
+
   const options = {
     method: 'POST',
     url: url.addContact,
@@ -25,53 +44,20 @@ export const addContact = (name, number) => (dispatch, getState) => {
       number,
     },
   };
+
   axios(options)
-    .then((res) => dispatch(items.add.success(res)))
+    .then(({ data }) => dispatch(items.add.success(data)))
     .catch((err) => {
       dispatch(items.add.error(err));
-      if (err.response.status === 400) {
-        toast.error('Contact creation error!');
-      } else {
-        toast.error('Something went wrong! Please reload the page!');
-      }
+      toast.error(err.message);
     });
 };
 
-export const getContacts = () => (dispatch, getState) => {
-  const token = getState().profile.token;
-
-  if (!token) {
-    return;
-  }
-  dispatch(items.get.request());
-  const options = {
-    method: 'GET',
-    url: url.getContacts,
-    headers: {
-      Authorization: 'Bearer ' + token,
-    },
-  };
-  axios(options)
-    .then((res) => dispatch(items.get.success(res)))
-    .catch((err) => {
-      dispatch(items.get.error(err));
-      if (err.response.status === 404) {
-        toast.info("There is no such user's collection!");
-      } else if (err.response.status === 500) {
-        toast.error('Oops! Server error! Please try later!');
-      } else {
-        toast.error('Something went wrong! Please reload the page!');
-      }
-    });
-};
-
-export const delContact = (id) => (dispatch, getState) => {
-  const token = getState().profile.token;
-
-  if (!token) {
-    return;
-  }
+export const deleteContact = (id) => (dispatch, getState) => {
   dispatch(items.delete.request());
+
+  const token = getState().profile.token;
+
   const options = {
     method: 'DELETE',
     url: url.deleteContact(id),
@@ -82,27 +68,20 @@ export const delContact = (id) => (dispatch, getState) => {
       id,
     },
   };
+
   axios(options)
     .then((res) => dispatch(items.delete.success(res)))
     .catch((err) => {
       dispatch(items.delete.error(err));
-      if (err.response.status === 404) {
-        toast.info("There is no such user's collection!");
-      } else if (err.response.status === 500) {
-        toast.error('Oops! Server error! Please try later!');
-      } else {
-        toast.error('Something went wrong! Please reload the page!');
-      }
+      toast.error(err.message);
     });
 };
 
 export const editContact = (id, name, number) => (dispatch, getState) => {
+  dispatch(items.edit.request());
+
   const token = getState().profile.token;
 
-  if (!token) {
-    return;
-  }
-  dispatch(items.edit.request());
   const options = {
     method: 'PATCH',
     url: url.editContact(id),
@@ -114,16 +93,11 @@ export const editContact = (id, name, number) => (dispatch, getState) => {
       number,
     },
   };
+
   axios(options)
     .then((res) => dispatch(items.edit.success(res)))
     .catch((err) => {
       dispatch(items.edit.error(err));
-      if (err.response.status === 404) {
-        toast.info("There is no such user's collection!");
-      } else if (err.response.status === 500) {
-        toast.error('Oops! Server error! Please try later!');
-      } else {
-        toast.error('Something went wrong! Please reload the page!');
-      }
+      toast.error(err.message);
     });
 };

@@ -1,14 +1,15 @@
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
+
+import { ContactList, ContactForm, UserMenu, EditForm } from './components';
+import { selName } from '../../services/profile/selectors';
+import { selectorHasContacts } from '../../services/contacts/selectors';
+import { selIsEditing } from '../../services/additional/selectors';
 import styles from './styles.module.css';
 
-import { selName } from '../../services/profile/selectors';
-import { selCont } from '../../services/contacts/selectors';
-import { ContactList, ContactForm, UserMenu, EditForm } from './components';
-import { selIsEditing } from '../../services/additional/selectors';
-
-export const Contacts = () => {
+export const Contacts = memo(() => {
   const name = useSelector(selName);
-  const isCont = useSelector(selCont);
+  const hasContacts = useSelector(selectorHasContacts);
   const isEdit = useSelector(selIsEditing);
 
   return (
@@ -16,9 +17,9 @@ export const Contacts = () => {
       <h2>Welcome to phonebook {name}</h2>
       <UserMenu />
       <div className={styles.container}>
-        {isCont && <ContactList />}
-        {isCont && (!isEdit ? <ContactForm /> : <EditForm />)}
+        {hasContacts && <ContactList />}
+        {hasContacts && (!isEdit ? <ContactForm /> : <EditForm />)}
       </div>
     </div>
   );
-};
+});

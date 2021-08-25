@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from '../../../../services/contacts/operations';
 import styles from './styles.module.css';
-import { selContacts } from '../../../../services/contacts/selectors';
+import { selectorContacts } from '../../../../services/contacts/selectors';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(selContacts);
+  const contacts = useSelector(selectorContacts);
   const dispatch = useDispatch();
   const onAddContacts = (name, number) => dispatch(addContact(name, number));
 
