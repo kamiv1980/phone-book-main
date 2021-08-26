@@ -8,7 +8,7 @@ const initialState = {
 
 export function contactsReducer(state = initialState, { type, payload }) {
   switch (type) {
-    case actionTypes.FETCH_CONTACTS_SUCCESS:
+    case actionTypes.GET_CONTACTS_SUCCESS:
       return { ...payload, hasContacts: true };
 
     case actionTypes.ADD_CONTACT_SUCCESS:

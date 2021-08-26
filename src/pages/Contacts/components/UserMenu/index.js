@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './styles.module.css';
+import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { getUser, signOut } from '../../../../services/profile/operations';
-import { getContacts } from '../../../../services/contacts/operations';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export const UserMenu = () => {
   const handleSignOut = () => dispatch(signOut());
 
   const handleOpenContacts = () => {
-    dispatch(getContacts());
+    // dispatch(getContacts());
     setAnchorEl(null);
   };
 
@@ -38,7 +38,9 @@ export const UserMenu = () => {
       </Button>
       <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={handleUserInfo}>My account</MenuItem>
-        <MenuItem onClick={handleOpenContacts}>Contacts</MenuItem>
+        <MenuItem onClick={handleOpenContacts}>
+          <Link to="/contacts">Contacts</Link>
+        </MenuItem>
         <MenuItem onClick={handleSignOut}>Logout</MenuItem>
       </Menu>
     </div>

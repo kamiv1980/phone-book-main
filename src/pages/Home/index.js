@@ -2,12 +2,13 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { Contacts } from '../Contacts';
-import { selAuth } from '../../services/profile/selectors';
+import { selAuth, selName } from '../../services/profile/selectors';
 import styles from './styless.module.css';
+import { UserMenu } from '../Contacts/components';
 
 export const Home = memo(() => {
   const { isAuth } = useSelector(selAuth);
+  const name = useSelector(selName);
 
   return (
     <div className={styles.navbar}>
@@ -22,7 +23,8 @@ export const Home = memo(() => {
           Sign Up
         </Link>
       )}
-      {isAuth && <Contacts />}
+      {isAuth && <h2>Welcome to phonebook {name}</h2>}
+      {isAuth && <UserMenu />}
     </div>
   );
 });

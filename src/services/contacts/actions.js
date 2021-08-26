@@ -1,28 +1,28 @@
 /** @format */
 
 export const actionTypes = {
-  FETCH_CONTACTS_REQUEST: 'contacts/fetchContactsRequest',
-  FETCH_CONTACTS_SUCCESS: 'contacts/fetchContactsSuccess',
-  FETCH_CONTACTS_ERROR: 'contacts/fetchContactsError',
+  GET_CONTACTS_REQUEST: 'GET_CONTACTS_REQUEST',
+  GET_CONTACTS_SUCCESS: 'GET_CONTACTS_SUCCESS',
+  GET_CONTACTS_ERROR: 'GET_CONTACTS_ERROR',
 
-  ADD_CONTACT_REQUEST: 'contacts/addContactRequest',
-  ADD_CONTACT_SUCCESS: 'contacts/addContactSuccess',
-  ADD_CONTACT_ERROR: 'contacts/addContactError',
+  ADD_CONTACT_REQUEST: 'ADD_CONTACT_REQUEST',
+  ADD_CONTACT_SUCCESS: 'ADD_CONTACT_SUCCESS',
+  ADD_CONTACT_ERROR: 'ADD_CONTACT_ERROR',
 
-  DELETE_CONTACT_REQUEST: 'contacts/deleteContactRequest',
-  DELETE_CONTACT_SUCCESS: 'contacts/deleteContactSuccess',
-  DELETE_CONTACT_ERROR: 'contacts/deleteContactError',
+  DELETE_CONTACT_REQUEST: 'DELETE_CONTACT_REQUEST',
+  DELETE_CONTACT_SUCCESS: 'DELETE_CONTACT_SUCCESS',
+  DELETE_CONTACT_ERROR: 'DELETE_CONTACT_ERROR',
 
-  EDIT_CONTACT_REQUEST: 'contacts/editContactRequest',
-  EDIT_CONTACT_SUCCESS: 'contacts/editContactSuccess',
-  EDIT_CONTACT_ERROR: 'contacts/editContactError',
+  EDIT_CONTACT_REQUEST: 'EDIT_CONTACT_REQUEST',
+  EDIT_CONTACT_SUCCESS: 'EDIT_CONTACT_SUCCESS',
+  EDIT_CONTACT_ERROR: 'EDIT_CONTACT_ERROR',
 };
 
 export let items = {
   get: {
-    request: () => ({ type: actionTypes.FETCH_CONTACTS_REQUEST }),
-    success: (payload) => ({ type: actionTypes.FETCH_CONTACTS_SUCCESS, payload }),
-    error: (payload) => ({ type: actionTypes.FETCH_CONTACTS_ERROR, payload }),
+    request: () => ({ type: actionTypes.GET_CONTACTS_REQUEST }),
+    success: (payload) => ({ type: actionTypes.GET_CONTACTS_SUCCESS, payload }),
+    error: (payload) => ({ type: actionTypes.GET_CONTACTS_ERROR, payload }),
   },
   add: {
     request: () => ({ type: actionTypes.ADD_CONTACT_REQUEST }),

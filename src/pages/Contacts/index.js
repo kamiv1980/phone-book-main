@@ -1,24 +1,28 @@
-import { memo } from 'react';
-import { useSelector } from 'react-redux';
+import { memo, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ContactList, ContactForm, UserMenu, EditForm } from './components';
 import { selName } from '../../services/profile/selectors';
-import { selectorHasContacts } from '../../services/contacts/selectors';
 import { selIsEditing } from '../../services/additional/selectors';
 import styles from './styles.module.css';
+import { getContacts } from '../../services/contacts/operations';
 
 export const Contacts = memo(() => {
+  const dispatch = useDispatch();
   const name = useSelector(selName);
-  const hasContacts = useSelector(selectorHasContacts);
   const isEdit = useSelector(selIsEditing);
+
+  useEffect(() => {
+    dispatch(getContacts());
+  }, []);
 
   return (
     <div>
       <h2>Welcome to phonebook {name}</h2>
       <UserMenu />
       <div className={styles.container}>
-        {hasContacts && <ContactList />}
-        {hasContacts && (!isEdit ? <ContactForm /> : <EditForm />)}
+        <ContactList />
+        {!isEdit ? <ContactForm /> : <EditForm />}
       </div>
     </div>
   );
