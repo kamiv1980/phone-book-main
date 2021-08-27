@@ -8,12 +8,12 @@ const notes = {
 
 export function notesReducer(state = notes, action) {
   switch (action.type) {
-    case actionTypes.NEW_COMPONENT:
+    case actionTypes.NEW_ITEM:
       return {
         ...state,
         component: (state.component = action.payload.component),
       };
-    case actionTypes.NEW_ITEM:
+    case actionTypes.EDIT_ITEM:
       return {
         ...state,
         editItem: action.payload.editItem,

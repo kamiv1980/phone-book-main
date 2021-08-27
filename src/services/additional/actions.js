@@ -1,17 +1,17 @@
 export const actionTypes = {
   NEW_ITEM: 'NEW_ITEM',
-  NEW_COMPONENT: 'NEW_COMPONENT',
+  EDIT_ITEM: 'EDIT_ITEM',
 };
 
 export const newComponent = (component) => ({
-  type: actionTypes.NEW_COMPONENT,
+  type: actionTypes.NEW_ITEM,
   payload: {
     component,
   },
 });
 
 export const newEditItem = (editItem) => ({
-  type: actionTypes.NEW_ITEM,
+  type: actionTypes.EDIT_ITEM,
   payload: {
     editItem,
   },

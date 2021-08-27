@@ -1,12 +1,12 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from '../../../../services/contacts/operations';
 import styles from './styles.module.css';
 import { selectorContacts } from '../../../../services/contacts/selectors';
 
-export const ContactForm = () => {
+export const ContactForm = memo(() => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(selectorContacts);
@@ -35,4 +35,4 @@ export const ContactForm = () => {
       <button className={styles.button}>Add new contact</button>
     </form>
   );
-};
+});

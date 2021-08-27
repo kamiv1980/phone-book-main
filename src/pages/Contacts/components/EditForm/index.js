@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styles from './styles.module.css';
@@ -8,7 +8,7 @@ import { selEditContact } from '../../../../services/additional/selectors';
 import { editContact } from '../../../../services/contacts/operations';
 import { newComponent } from '../../../../services/additional/actions';
 
-export const EditForm = () => {
+export const EditForm = memo(() => {
   const item = useSelector(selEditContact);
   const [name, setName] = useState(item.name);
   const [number, setNumber] = useState(item.number);
@@ -38,4 +38,4 @@ export const EditForm = () => {
       </div>
     </form>
   );
-};
+});

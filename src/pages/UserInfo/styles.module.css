@@ -1,0 +1,19 @@
+.wrapper{
+    text-align: center;
+}
+.title{
+    font-size:2em;
+}
+.data{
+color: darkred;
+}
+.button_back{
+    font-weight: 700;
+    height: 2em;
+    border-radius: 5px;
+    margin:40px auto;
+    color: indigo;
+    font-size: large ;
+    background-color: #acdaf1;
+
+}

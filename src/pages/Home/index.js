@@ -1,30 +1,22 @@
-import { memo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selAuth, selName } from '../../services/profile/selectors';
+import { selectAuth, selectName } from '../../services/profile/selectors';
 import styles from './styless.module.css';
-import { UserMenu } from '../Contacts/components';
 
 export const Home = memo(() => {
-  const { isAuth } = useSelector(selAuth);
-  const name = useSelector(selName);
+  const { isAuth } = useSelector(selectAuth);
+  const name = useSelector(selectName);
 
   return (
-    <div className={styles.navbar}>
+    <div className={styles.wrapper}>
       {!isAuth && <h1>HOME PAGE</h1>}
-      {!isAuth && (
-        <Link to="/sign_in" className={styles.link}>
-          Sign In
-        </Link>
+      {isAuth && (
+        <h2>
+          {' '}
+          Welcome <span className={styles.data}>{name}</span>{' '}
+        </h2>
       )}
-      {!isAuth && (
-        <Link to="/sign_up" className={styles.link}>
-          Sign Up
-        </Link>
-      )}
-      {isAuth && <h2>Welcome to phonebook {name}</h2>}
-      {isAuth && <UserMenu />}
     </div>
   );
 });

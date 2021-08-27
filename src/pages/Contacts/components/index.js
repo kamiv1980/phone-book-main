@@ -1,5 +1,5 @@
 export * from './ContactForm';
-export * from './UserMenu';
+export * from '../../../components/UserMenu';
 export * from './ContactList';
 export * from './EditForm';
 // export * from './Loader';

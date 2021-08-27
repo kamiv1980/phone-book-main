@@ -1,11 +1,9 @@
-.link{
-    display: inline-block;
-    font-size: 15px;
-    padding: 5px;
-    text-decoration: none;
-    height: 1em;
-    margin-top: 25px;
+.wrapper{
+    text-align: center;
 }
-.navbar{
-    display: flex;
+.title{
+    font-size:2em;
+}
+.data{
+    color: darkred;
 }
