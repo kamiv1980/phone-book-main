@@ -21,7 +21,6 @@ export const ContactList = memo(() => {
 
   const handleDelete = (id) => () => dispatch(deleteContact(id));
 
-  console.log('contacts', contacts);
   return (
     <table className={styles.list}>
       <thead>

@@ -1,1 +1,1 @@
-export const selectorIsLoading = (state) => state;
+export const selectorIsLoading = (state) => state.overlay;

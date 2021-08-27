@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import { signOut } from '../../services/profile/operations';
-import { UserMenu } from '../UserMenu';
+import { UserMenu } from './UserMenu';
 import styles from './styles.module.css';
 import { useStyles } from './styles';
 

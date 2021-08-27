@@ -23,7 +23,7 @@ export const signIn = (email, password) => (dispatch) => {
     .then(({ data: { token, user } }) => dispatch(sign.in.success({ token, ...user })))
     .catch((err) => {
       dispatch(sign.in.error(err));
-      toast.error('Invalid email or password! Try again!');
+      toast.error(err.message);
     });
 };
 
@@ -44,13 +44,7 @@ export const signUp = (name, email, password) => (dispatch) => {
     .then(({ data: { token, user } }) => dispatch(sign.up.success({ token, ...user })))
     .catch((err) => {
       dispatch(sign.up.error(err));
-      if (err.response.status === 400) {
-        toast.error('User creation error! Please try again!');
-      } else if (err.response.status === 500) {
-        toast.error('Oops! Server error! Please try later!');
-      } else {
-        toast.error('Something went wrong!');
-      }
+      toast.error(err.message);
     });
 };
 
@@ -90,6 +84,6 @@ export const getUser = () => (dispatch, getState) => {
     .then((res) => dispatch(get.success(res)))
     .catch((err) => {
       dispatch(get.error(err));
-      toast.warn('Authorization timed out! Please authenticate again!');
+      toast.error(err.message);
     });
 };

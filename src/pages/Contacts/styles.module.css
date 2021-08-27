@@ -1,6 +1,18 @@
-.container {
+.wrapper {
     width: 70em;
     display: flex;
     justify-content: space-between;
     margin: 0 200px;
+}
+.container{
+    text-align: center;
+}
+.button_back{
+    font-weight: 700;
+    height: 2em;
+    border-radius: 5px;
+    margin:40px auto;
+    color: indigo;
+    font-size: large ;
+    background-color: #acdaf1;
 }

@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ContactList, ContactForm, EditForm } from './components';
@@ -6,7 +6,7 @@ import { selIsEditing } from '../../services/additional/selectors';
 import styles from './styles.module.css';
 import { getContacts } from '../../services/contacts/operations';
 
-export const Contacts = memo(() => {
+export const Contacts = memo(({ history }) => {
   const dispatch = useDispatch();
   const isEdit = useSelector(selIsEditing);
 
@@ -15,9 +15,14 @@ export const Contacts = memo(() => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
       <ContactList />
-      {!isEdit ? <ContactForm /> : <EditForm />}
+      <div className={styles.container}>
+        {!isEdit ? <ContactForm /> : <EditForm />}
+        <button onClick={() => history.goBack()} className={styles.button_back}>
+          Go Back
+        </button>
+      </div>
     </div>
   );
 });
